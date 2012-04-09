@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Reflection;
+using RecursiveReflection.Attributes;
 using RecursiveReflection.Map;
 
 namespace RecursiveReflection
@@ -10,6 +11,7 @@ namespace RecursiveReflection
 		public T Reflect<T>(T model) where T : class
 		{
 			var reflectionMap = ReflectionMapCreator.Create(model.GetType());
+
 			var reflectedModel = Reflect(model, reflectionMap);
 
 			return reflectedModel;
@@ -25,9 +27,8 @@ namespace RecursiveReflection
 			foreach (var property in recursiveReflectionMap.Properties)
 			{
 				PropertyInfo info = recursiveReflectionMap.Type.GetProperty(property);
-			    var originalValue = (string) info.GetValue(model, null);
-                
-                Console.WriteLine(originalValue);
+
+				DoAttributeAction(info, model);
 			}
 
 			foreach (var map in recursiveReflectionMap.Maps)
@@ -69,6 +70,16 @@ namespace RecursiveReflection
 			}
 
 			return model;
+		}
+
+		private void DoAttributeAction<T>(PropertyInfo propertyInfo, T model)
+		{
+			foreach (BaseRecursiveReflectionAttribute attribute in propertyInfo.GetCustomAttributes(typeof(BaseRecursiveReflectionAttribute), true))
+			{
+				var value = (string)propertyInfo.GetValue(model, null);
+				attribute.Action(value);
+			}
+
 		}
 	}
 }

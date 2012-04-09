@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F1A4B4EF-5284-4A6D-9A3F-F6E7AC320212}</ProjectGuid>
+    <ProjectGuid>{A5C97CEA-6604-49A2-9349-48F44F8B8EA9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RecursiveReflection</RootNamespace>
-    <AssemblyName>RecursiveReflection</AssemblyName>
+    <RootNamespace>RecursiveReflection.Tests</RootNamespace>
+    <AssemblyName>RecursiveReflection.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,15 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attributes\WriteValueToConsoleAttribute.cs" />
-    <Compile Include="Count\Counter.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="IRecursiveReflector.cs" />
-    <Compile Include="Map\RecursiveReflectionMap.cs" />
-    <Compile Include="Map\ReflectionMapCreator.cs" />
-    <Compile Include="RecursiveReflector.cs" />
+    <Compile Include="RecursiveReflectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Attributes\BaseRecursiveReflectionAttribute.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RecursiveReflection\RecursiveReflection.csproj">
+      <Project>{F1A4B4EF-5284-4A6D-9A3F-F6E7AC320212}</Project>
+      <Name>RecursiveReflection</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

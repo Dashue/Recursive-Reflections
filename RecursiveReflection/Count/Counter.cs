@@ -30,7 +30,7 @@ namespace RecursiveReflection.Count
 					count += CountProperties(subProperties);
 				}
 
-				if (property.GetCustomAttributes(typeof(RecursiveReflectionAttribute), false).Any())
+				if (property.GetCustomAttributes(typeof(BaseRecursiveReflectionAttribute), false).Any())
 				{
 					count++;
 				}

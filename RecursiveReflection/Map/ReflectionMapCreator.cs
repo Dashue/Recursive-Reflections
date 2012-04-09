@@ -24,7 +24,7 @@ namespace RecursiveReflection.Map
 			{
 				if (property.PropertyType.IsClass)
 				{
-					if (property.PropertyType == typeof(string) && property.GetCustomAttributes(typeof(RecursiveReflectionAttribute), false).Any())
+					if (property.PropertyType == typeof(string) && property.GetCustomAttributes(typeof(BaseRecursiveReflectionAttribute), false).Any())
 					{
 						translationMap.Properties.Add(property.Name);
 					}
@@ -62,9 +62,9 @@ namespace RecursiveReflection.Map
 								{
 									IsList = true,
 									Maps = new List<RecursiveReflectionMap>
-																       	{
-																       		Create(valueType, valueType.Name)
-																       	},
+																		{
+																			Create(valueType, valueType.Name)
+																		},
 									Name = property.Name,
 									Properties = new List<string>(),
 									Type = property.PropertyType
